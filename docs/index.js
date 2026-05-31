@@ -2,6 +2,8 @@ import "https://cdn.jsdelivr.net/npm/iuai@0.6.2/iuai.js";
 import "https://api.mapbox.com/mapbox-gl-js/v3.7.0/mapbox-gl.js";
 import "https://unpkg.com/@turf/turf@7.0.0/turf.min.js";
 
+import citiesJson from "./cities.json" with { type: "json" };
+
 const { elem, style, getElem } = iuai;
 
 initApp();
@@ -833,7 +835,7 @@ function getCitiesColors() {
 
 async function getCities() {
   const megaCityPop = getCitiesColors().stops.slice(-1)[0];
-  const cities = (await fetch("./cities.json").then((a) => a.json()))
+  const cities = citiesJson
     .map(({ mapbox, ninja, wiki, ...a }) => ({
       ...mapbox,
       ...ninja,
